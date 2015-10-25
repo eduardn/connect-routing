@@ -2,5 +2,9 @@ language: node_js
 node_js:
     - "4.0"
 
-install:
+before_install:
     - npm install jasmine-node -g
+    - npm install grunt-cli -g
+
+before_script:
+    - grunt
