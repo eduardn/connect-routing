@@ -1,5 +1,4 @@
 module.exports = function(grunt) {
-	
 	grunt.initConfig({
 		babel: {
 			options: {
@@ -10,8 +9,8 @@ module.exports = function(grunt) {
 			}
 		}
 	})
-	
+
 	grunt.loadNpmTasks('grunt-babel');
-	
+
 	grunt.registerTask('default', ['babel']);
 }
