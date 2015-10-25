@@ -4,7 +4,7 @@
   "description": "A routing middleware for connect",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine-node test"
   },
   "author": "Eduard Neculaesi <neculaesi.eduard@gmail.com>",
   "license": "MIT",
