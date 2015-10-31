@@ -34,4 +34,11 @@ describe('Router e2e', function () {
             .expect(200)
             .expect('I was called with param ' + 10, done);
     });
+
+    it('should respond with a not found error', function (done) {
+        request(app)
+            .get('/no/route')
+            .expect('No route matches /no/route')
+            .expect(404, done);
+    });
 });

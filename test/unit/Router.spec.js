@@ -68,5 +68,22 @@ describe('Router', function () {
 
             expect(router.routes.length).toEqual(1);
         });
+
+        it('should throw an error when no function provided', function () {
+            var testFn = function () {
+                router.addRoute('/test/add/route/error');
+            };
+
+             expect(testFn).toThrow();
+        });
+
+        it('should throw an error on route configuration issues', function () {
+            var options = {};
+            var testFn = function () {
+                router.addRoute('/test/add/route/options/error', options);
+            };
+
+            expect(testFn).toThrow();
+        });
     });
 });
