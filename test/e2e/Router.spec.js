@@ -20,6 +20,18 @@ router.addRoute('/test/:id', function (req, res, next) {
     next();
 });
 
+// Route with custom parameter
+router.addRoute('/test/custom/:id(([0-9])+)', function (req, res, next) {
+    res.end('I was called with param ' + req.params.id);
+    next();
+});
+
+// Route with mongoid type parameter
+router.addRoute('/test/complex/:userId(([a-f0-9]){24})', function (req, res, next) {
+    res.end('Found user with id ' + req.params.userId);
+    next();
+});
+
 describe('Router e2e', function () {
     it('should call a simple route', function (done) {
         request(app)
@@ -40,5 +52,19 @@ describe('Router e2e', function () {
             .get('/no/route')
             .expect('No route matches /no/route')
             .expect(404, done);
+    });
+
+    it('should call a route with a custom parameter', function (done) {
+        request(app)
+            .get('/test/custom/123456')
+            .expect(200)
+            .expect('I was called with param 123456', done);
+    });
+
+    it('should call a route with a complex parameter', function (done) {
+        request(app)
+            .get('/test/complex/1234567890abcdef12345678')
+            .expect(200)
+            .expect('Found user with id 1234567890abcdef12345678', done);
     });
 });

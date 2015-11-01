@@ -8,6 +8,7 @@ A router for connect written in ES6. This project aims to be a complete and full
 - [x]  Build process
 - [x] CI
 - [x] Exceptions || better error handling
-- [ ] Custom route parameters matchers
+- [x] Custom route parameters matchers
 - [ ] Publish first version to npm
+- [ ] Docs
 - [ ] Complete this list with more features

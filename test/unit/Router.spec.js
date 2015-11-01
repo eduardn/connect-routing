@@ -55,6 +55,35 @@ describe('Router', function () {
             expect(req.params).toBeDefined();
             expect(req.params.id).toEqual('1');
         });
+
+        it('should match a route with a custom parameter', function () {
+            var routeFunction = jasmine.createSpy('routeAction', function () {});
+            requestParams.req.url = '/test/route/20';
+
+            router.addRoute('/test/route/:id(([0-9]+))', routeFunction);
+            Router.middleware(requestParams.req, requestParams.res, requestParams.next);
+
+            expect(routeFunction).toHaveBeenCalled();
+            expect(routeFunction.mostRecentCall.args.length).toEqual(3);
+            expect(routeFunction).toHaveBeenCalledWith(
+                requestParams.req, requestParams.res, requestParams.next);
+
+            // Get the request argument from the route function
+            var req = routeFunction.mostRecentCall.args[0];
+
+            expect(req.params).toBeDefined();
+            expect(req.params.id).toEqual('20');
+        });
+
+        it('should not match a route with a custom parameter', function () {
+            var routeFunction = jasmine.createSpy('routeAction', function () {});
+            requestParams.req.url = '/test/route/abghddd22';
+
+            router.addRoute('/test/route/:id(([0-9]+))', routeFunction);
+            Router.middleware(requestParams.req, requestParams.res, requestParams.next);
+
+            expect(routeFunction).not.toHaveBeenCalled();
+        });
     });
 
     describe('#addRoute()', function () {
