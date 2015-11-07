@@ -1,0 +1,8 @@
+lib
+test
+typings
+.DS_Store
+.travis.yml
+Gruntfile.js
+jsconfig.js
+tsd.json

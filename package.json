@@ -2,11 +2,11 @@
   "name": "connect-routing",
   "version": "0.1.0",
   "description": "A routing middleware for connect",
-  "main": "index.js",
+  "main": "./dist/Router.js",
   "scripts": {
     "test": "jasmine-node test"
   },
-  "author": "Eduard Neculaesi <neculaesi.eduard@gmail.com>",
+  "author": "eduardn",
   "license": "MIT",
   "devDependencies": {
     "connect": "^3.4.0",
