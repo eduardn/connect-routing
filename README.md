@@ -84,7 +84,7 @@ var router = Router.instance();
 app.use(Router.middleware);
 
 router.addRoute('/users/:id(([0-9]+))', function (req, res, next) {
-    res.end('This route macthed the number ' + req.params.id + ' for id parameter');
+    res.end('This route matched the number ' + req.params.id + ' for id parameter');
     next();
 });
 ```
