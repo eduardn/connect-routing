@@ -89,6 +89,24 @@ router.addRoute('/users/:id(([0-9]+))', function (req, res, next) {
 });
 ```
 
+## Different HTTP Methods
+To use a different http method for a route see the example below
+
+```JavaScript
+var connect = require('connect');
+var Router = require('connect-routing');
+
+var app = connect();
+var router = Router.instance();
+
+app.use(Router.middleware);
+
+router.addRoute('POST', '/users', function (req, res, next) {
+    res.end('Creating a new user...');
+    next();
+});
+```
+
 ### Things to do
 - [x] Tests
 - [x]  Build process
@@ -96,5 +114,5 @@ router.addRoute('/users/:id(([0-9]+))', function (req, res, next) {
 - [x] Exceptions || better error handling
 - [x] Custom route parameters matchers
 - [x] Docs
-- [ ] Publish first version to npm
+- [x] Publish first version to npm
 - [ ] Complete this list with more features
