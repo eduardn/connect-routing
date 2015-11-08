@@ -1,6 +1,6 @@
 {
   "name": "connect-routing",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A routing middleware for connect",
   "main": "./dist/Router.js",
   "scripts": {
