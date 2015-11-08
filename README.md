@@ -106,13 +106,3 @@ router.addRoute('POST', '/users', function (req, res, next) {
     next();
 });
 ```
-
-### Things to do
-- [x] Tests
-- [x]  Build process
-- [x] CI
-- [x] Exceptions || better error handling
-- [x] Custom route parameters matchers
-- [x] Docs
-- [x] Publish first version to npm
-- [ ] Complete this list with more features
