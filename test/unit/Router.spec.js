@@ -17,18 +17,9 @@ describe('Router', function () {
             next: function() {}
         };
 
-        it('should call callRoute', function () {
-            spyOn(router, 'callRoute');
-            Router.middleware(requestParams.req, requestParams.res, requestParams.next);
-
-            expect(router.callRoute).toHaveBeenCalled();
-            expect(router.callRoute).toHaveBeenCalledWith(
-                requestParams.req.url, requestParams.req, requestParams.res, requestParams.next);
-        });
-
         it('should match a simple route', function () {
             var routeFunction = jasmine.createSpy('routeAction', function () {});
-            router.addRoute('/test/route', routeFunction);
+            router.route('/test/route', routeFunction);
 
             Router.middleware(requestParams.req, requestParams.res, requestParams.next);
 
@@ -41,7 +32,7 @@ describe('Router', function () {
             var routeFunction = jasmine.createSpy('routeAction', function () {});
             requestParams.req.url = '/test/route/1';
 
-            router.addRoute('/test/route/:id', routeFunction);
+            router.route('/test/route/:id', routeFunction);
             Router.middleware(requestParams.req, requestParams.res, requestParams.next);
 
             expect(routeFunction).toHaveBeenCalled();
@@ -60,7 +51,7 @@ describe('Router', function () {
             var routeFunction = jasmine.createSpy('routeAction', function () {});
             requestParams.req.url = '/test/route/20';
 
-            router.addRoute('/test/route/:id(([0-9]+))', routeFunction);
+            router.route('/test/route/:id(([0-9]+))', routeFunction);
             Router.middleware(requestParams.req, requestParams.res, requestParams.next);
 
             expect(routeFunction).toHaveBeenCalled();
@@ -79,40 +70,31 @@ describe('Router', function () {
             var routeFunction = jasmine.createSpy('routeAction', function () {});
             requestParams.req.url = '/test/route/abghddd22';
 
-            router.addRoute('/test/route/:id(([0-9]+))', routeFunction);
+            router.route('/test/route/:id(([0-9]+))', routeFunction);
             Router.middleware(requestParams.req, requestParams.res, requestParams.next);
 
             expect(routeFunction).not.toHaveBeenCalled();
         });
     });
 
-    describe('#addRoute()', function () {
+    describe('#route()', function () {
         beforeEach(function () {
             // Reset routes
             router.routes.length = 0;
         });
 
         it('should add a new route to the list', function () {
-            router.addRoute('/test/add/route', noop);
+            router.route('/test/add/route', noop);
 
             expect(router.routes.length).toEqual(1);
         });
 
         it('should throw an error when no function provided', function () {
             var testFn = function () {
-                router.addRoute('/test/add/route/error');
+                router.route('/test/add/route/error');
             };
 
              expect(testFn).toThrow();
-        });
-
-        it('should throw an error on route configuration issues', function () {
-            var options = {};
-            var testFn = function () {
-                router.addRoute('/test/add/route/options/error', options);
-            };
-
-            expect(testFn).toThrow();
         });
     });
 });

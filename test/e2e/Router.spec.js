@@ -9,25 +9,25 @@ var router = Router.instance();
 app.use(Router.middleware);
 
 // Simple route
-router.addRoute('/test', function (req, res, next) {
+router.route('/test', function (req, res, next) {
     res.end('I was called');
     next();
 });
 
 // Route with one parameter
-router.addRoute('/test/:id', function (req, res, next) {
+router.route('/test/:id', function (req, res, next) {
     res.end('I was called with param ' + req.params.id);
     next();
 });
 
 // Route with custom parameter
-router.addRoute('/test/custom/:id(([0-9])+)', function (req, res, next) {
+router.route('/test/custom/:id(([0-9])+)', function (req, res, next) {
     res.end('I was called with param ' + req.params.id);
     next();
 });
 
 // Route with mongoid type parameter
-router.addRoute('/test/complex/:userId(([a-f0-9]){24})', function (req, res, next) {
+router.route('/test/complex/:userId(([a-f0-9]){24})', function (req, res, next) {
     res.end('Found user with id ' + req.params.userId);
     next();
 });

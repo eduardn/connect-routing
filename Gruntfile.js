@@ -6,6 +6,7 @@ module.exports = function(grunt) {
             },
            dist: {
                 files: {
+                    'dist/Route.js': 'lib/Route.js',
                     'dist/Router.js': 'lib/Router.js',
                     'dist/errors/RouteNotFoundError.js': 'lib/errors/RouteNotFoundError.js'
                 }
